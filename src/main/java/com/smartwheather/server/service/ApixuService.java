@@ -1,7 +1,9 @@
-package com.smartwheather.server;
+package com.smartwheather.server.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import com.smartwheather.server.model.ApiResponse;
 
 
 /**
@@ -21,13 +23,18 @@ public class ApixuService {
 	 * @param numberOfDays beween 1 and 10 (max) 
 	 * @return a json as String
 	 */
-	public String getWheatherData(String queryText, Integer numberOfDays) {
+	public ApiResponse getWheatherData(String queryText, Integer numberOfDays) {
 
 		String uri = this.root_uri + "&q="+ queryText + "&days=" + numberOfDays;
 		
 		RestTemplate restTemplate = new RestTemplate();
-		String result = restTemplate.getForObject(uri, String.class);
+		
+		ApiResponse result = restTemplate.getForObject(uri, ApiResponse.class);
 
+		
+		
+		
+		
 		return result;
 
 	}

@@ -3,7 +3,7 @@ package com.smartwheather.server.model;
 public class ForecastData {
 
 	private Long id;
-	private LocationData location;
+	private Location location;
 	
 	private String Date;
 	
