@@ -1,8 +1,15 @@
 package com.smartwheather.server.service;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartwheather.server.model.ApiResponse;
 
 
@@ -27,15 +34,11 @@ public class ApixuService {
 
 		String uri = this.root_uri + "&q="+ queryText + "&days=" + numberOfDays;
 		
+				
 		RestTemplate restTemplate = new RestTemplate();
+		ApiResponse apiResponse = restTemplate.getForObject(uri, ApiResponse.class);
 		
-		ApiResponse result = restTemplate.getForObject(uri, ApiResponse.class);
-
-		
-		
-		
-		
-		return result;
+		return apiResponse;
 
 	}
 	/**
