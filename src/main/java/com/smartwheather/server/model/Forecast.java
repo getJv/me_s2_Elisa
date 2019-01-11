@@ -1,10 +1,6 @@
 package com.smartwheather.server.model;
 
 
-
-
-
-
 import java.util.List;
 
 
@@ -14,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Forecast  {
 
-	public List<Forecastday> farecastday;
+	public List<Forecastday> forecastday;
 
 	public Forecast() {
 		// TODO Auto-generated constructor stub
@@ -22,21 +18,21 @@ public class Forecast  {
 	}
 	
 
-	public Forecast(List<Forecastday> farecastday) {
+	public Forecast(List<Forecastday> forecastday) {
 		super();
-		this.farecastday = farecastday;
+		this.forecastday = forecastday;
 		
 	}
 	
 	
 
 
-	public List<Forecastday> getFarecastday() {
-		return farecastday;
+	public List<Forecastday> getForecastday() {
+		return forecastday;
 	}
 
-	public void setFarecastday(List<Forecastday> farecastday) {
-		this.farecastday = farecastday;
+	public void setForecastday(List<Forecastday> forecastday) {
+		this.forecastday = forecastday;
 	}
 
 	

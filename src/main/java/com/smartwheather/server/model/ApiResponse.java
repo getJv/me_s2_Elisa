@@ -48,8 +48,29 @@ public class ApiResponse {
 		this.forecast = forecast;
 	}
 	
-	
-	
+	/* Test to recovery the forecast attr */ 
+
+	/*
+	 * @SuppressWarnings("unchecked")
+	 * 
+	 * @JsonProperty("forecast") private void unpackNested(Map<String,Object>
+	 * forecast) throws ClassNotFoundException, IOException {
+	 * System.out.println(forecast.get("forecastday")); ObjectMapper mapper = new
+	 * ObjectMapper(); String tt =
+	 * "[{\"date\":\"2019-01-11\"},{\"date\":\"2019-01-11\"}]"; List<Forecastday>
+	 * myObjects = Arrays.asList(mapper.readValue(tt, Forecastday[].class));
+	 * 
+	 * System.out.println(myObjects);
+	 * 
+	 * //System.out.println(jsHandler.parseJsonArray(forecast.get("forecastday").
+	 * toString(), Forecastday.class));
+	 * 
+	 * //
+	 * 
+	 * //this.brandName = (String)brand.get("name"); //Map<String,String> owner =
+	 * (Map<String,String>)brand.get("owner"); //this.ownerName = owner.get("name");
+	 * }
+	 */
 	
 
 }

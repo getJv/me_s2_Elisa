@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smartwheather.server.model.ApiResponse;
 import com.smartwheather.server.service.ApixuService;
 import com.smartwheather.server.service.JsonHandlerService;
 
@@ -25,8 +26,17 @@ public class WheatherController {
 
 	@GetMapping("/wheather/{location}/days/{days}")
 	public String wheather(@PathVariable String location, @PathVariable Integer days) {
-
-		return JsonHandler.ObjectToJson(wheatherService.getWheatherData(location, days));
+		/* teste the storing data here*/
+		
+		ApiResponse obj = wheatherService.getWheatherData(location, days);
+		
+		System.out.println(obj.getForecast().getForecastday().get(0).getDay().getAvgtemp_c());
+		
+		
+		
+		String json = JsonHandler.ObjectToJson(wheatherService.getWheatherData(location, days));
+		
+		return json;
 
 	}
 	
