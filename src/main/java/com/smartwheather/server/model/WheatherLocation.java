@@ -1,10 +1,13 @@
 package com.smartwheather.server.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -12,46 +15,48 @@ import javax.persistence.OneToMany;
 public class WheatherLocation {
 
 	@Id
-	private String id; /* Created from the latitude and longitude concatenation its a way to group all data under the same coordinate */ 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id; 
+	private String tokenLocation; /* Created from the latitude and longitude concatenation its a way to group all data under the same coordinate */
 	private String name;
 	private String region;
 	private String country;
 	private Float lat;
 	private Float lon;
 	private String localtime;
-	@OneToMany(
-			mappedBy = "wheatherLocation",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
-	private List<WheatherData> wheatherData;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<WheatherData> wheatherDataList = new ArrayList<WheatherData>();
 
 	public WheatherLocation() {
-		
+		 
 	}
 	
 	
+	
+	 public WheatherLocation(Location location) {
+		 
+		 	super();
+			
+			this.setTokenLocation(location.getLat(), location.getLon());
+			this.name = location.getName();
+			this.region = location.getRegion();
+			this.country = location.getCountry();
+			this.lat = location.getLat();
+			this.lon = location.getLon();
+			this.localtime = location.getLocaltime();
+			
+		 
+	 }
+	 
+	 
 
-	public WheatherLocation(String name, String region, String country, Float lat, Float lon,
-			String localtime) {
-		super();
-		this.setId(lat, lon);
-		this.name = name;
-		this.region = region;
-		this.country = country;
-		this.lat = lat;
-		this.lon = lon;
-		this.localtime = localtime;
-	}
-
-
-
-	public String getId() {
-		return String.valueOf(lat)+String.valueOf(lon);
+	public Long getId() {
+		return id;
 	}
 	
-	private void setId(Float lat, Float lon) {
-		this.id = String.valueOf(lat)+String.valueOf(lon);
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -100,6 +105,38 @@ public class WheatherLocation {
 
 	public void setLocaltime(String localtime) {
 		this.localtime = localtime;
+	}
+
+
+
+	public String getTokenLocation() {
+		return tokenLocation;
+	}
+
+
+
+	public void setTokenLocation(Float lat, Float lon) {
+		this.tokenLocation =  Float.toString(lat)+","+Float.toString(lon);
+	}
+
+
+	public void addData(WheatherData data) {
+		 //https://bit.ly/2rJIkNd
+		 this.wheatherDataList.add(data);
+		 //data.setWheatherLocation(this);
+	 }
+	
+	public List<WheatherData> getWheatherDataList() {
+		//https://bit.ly/2rJIkNd
+		// force the devGuy use the addDataMethod to modify the data.
+		List<WheatherData> securelist = Collections.unmodifiableList(this.wheatherDataList);
+		return securelist;
+	}
+
+
+
+	public void setWheatherDataList(List<WheatherData> wheatherDataList) {
+		this.wheatherDataList = wheatherDataList;
 	}
 	
 	

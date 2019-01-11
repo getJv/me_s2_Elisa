@@ -21,7 +21,7 @@ public class ApiResponse {
 	
 	private Location location;
 	private Current current; 
-	private Forecast forecast;
+	//private Forecast forecast;
 	
 	
 	public Current getCurrent() {
@@ -40,13 +40,11 @@ public class ApiResponse {
 		this.location = location;
 	}
 
-	public Forecast getForecast() {
-		return forecast;
-	}
-
-	public void setForecast(Forecast forecast) {
-		this.forecast = forecast;
-	}
+	/*
+	 * public Forecast getForecast() { return forecast; }
+	 * 
+	 * public void setForecast(Forecast forecast) { this.forecast = forecast; }
+	 */
 	
 	/* Test to recovery the forecast attr */ 
 

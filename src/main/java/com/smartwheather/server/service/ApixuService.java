@@ -33,7 +33,7 @@ public class ApixuService {
 	public ApiResponse getWheatherData(String queryText, Integer numberOfDays) {
 
 		String uri = this.root_uri + "&q="+ queryText + "&days=" + numberOfDays;
-		
+		System.out.println(uri);
 				
 		RestTemplate restTemplate = new RestTemplate();
 		ApiResponse apiResponse = restTemplate.getForObject(uri, ApiResponse.class);
