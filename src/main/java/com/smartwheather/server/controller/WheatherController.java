@@ -35,15 +35,19 @@ public class WheatherController {
 	@GetMapping("/wheather/{location}/days/{days}")
 	public String wheather(@PathVariable String location, @PathVariable Integer days) {
 		
+		//Check if we have  the no expired data
+		// if yes, return it
+		// if no, get them from Api service, store it and then return it.
+		
 		ApiResponse obj = wheatherApiService.getWheatherData(location, days);
 		
 		String json = JsonHandler.ObjectToJson(obj);
 		
-		WheatherLocation wheatherLocation = new WheatherLocation(obj.getLocation());
+		//WheatherLocation wheatherLocation = new WheatherLocation(obj.getLocation());
 			
-		wheatherLocation.addData(new WheatherData(json));
+		//wheatherLocation.addData(new WheatherData(json));
 		
-		wheatherService.save(wheatherLocation);
+		//wheatherService.save(wheatherLocation);
 		
 		
 		

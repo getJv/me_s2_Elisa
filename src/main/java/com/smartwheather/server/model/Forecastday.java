@@ -17,14 +17,6 @@ public class Forecastday  {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Forecastday(String date, Day day) {
-		super();
-		this.date = date;
-		this.day = day;
-	}
-	
-	
-
 	public String getDate() {
 		return date;
 	}
@@ -33,13 +25,11 @@ public class Forecastday  {
 		this.date = date;
 	}
 
-	public Day getDay() {
-		return day;
-	}
-
-	public void setDay(Day day) {
-		this.day = day;
-	}
+	
+	  public Day getDay() { return day; }
+	  
+	  public void setDay(Day day) { this.day = day; }
+	 
 	
 
 }

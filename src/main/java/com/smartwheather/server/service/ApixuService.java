@@ -29,16 +29,41 @@ public class ApixuService {
 	 * @param queryText can be one of this values: Pass US Zipcode, UK Postcode, Canada Postalcode, IP address, Latitude/Longitude (decimal degree) or city name
 	 * @param numberOfDays beween 1 and 10 (max) 
 	 * @return a json as String
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonParseException 
 	 */
-	public ApiResponse getWheatherData(String queryText, Integer numberOfDays) {
+	public ApiResponse getWheatherData(String queryText, Integer numberOfDays)  {
 
 		String uri = this.root_uri + "&q="+ queryText + "&days=" + numberOfDays;
 		System.out.println(uri);
 				
 		RestTemplate restTemplate = new RestTemplate();
-		ApiResponse apiResponse = restTemplate.getForObject(uri, ApiResponse.class);
+		//ApiResponse apiResponse = restTemplate.getForObject(uri, ApiResponse.class);
 		
-		return apiResponse;
+		String json = restTemplate.getForObject(uri, String.class);
+		System.out.println(json);
+		
+		
+		final ObjectMapper objectMapper = new ObjectMapper();
+		
+		ApiResponse outsideObject = null;
+		try {
+			outsideObject = objectMapper.readValue(json, ApiResponse.class);
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return outsideObject ;
 
 	}
 	/**

@@ -1,6 +1,5 @@
 package com.smartwheather.server.model;
 
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -8,20 +7,12 @@ public class Day {
 
 	private Float  avgtemp_c;
 	private Float totalprecip_mm;
-	private List<Condition> condition;
+	private Condition condition;
 	
 	
 	public Day() {
 		// TODO Auto-generated constructor stub
-		System.out.println("day constructor");
-	}
-
-
-	public Day(Float avgtemp_c, Float totalprecip_mm, List<Condition> condition) {
-		super();
-		this.avgtemp_c = avgtemp_c;
-		this.totalprecip_mm = totalprecip_mm;
-		this.condition = condition;
+		
 	}
 
 
@@ -45,12 +36,12 @@ public class Day {
 	}
 
 
-	public List<Condition> getCondition() {
+	public Condition getCondition() {
 		return condition;
 	}
 
 
-	public void setCondition(List<Condition> condition) {
+	public void setCondition(Condition condition) {
 		this.condition = condition;
 	}
 	
