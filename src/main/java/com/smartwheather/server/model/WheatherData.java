@@ -7,7 +7,6 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.Type;
 
-
 @Entity
 public class WheatherData {
 	@Id
@@ -19,7 +18,6 @@ public class WheatherData {
 
 	public WheatherData() {
 
-		
 	}
 
 	public WheatherData(String data) {

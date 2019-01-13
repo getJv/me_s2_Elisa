@@ -1,7 +1,5 @@
 package com.smartwheather.server.controller;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +27,7 @@ public class WheatherController {
 
 	@Autowired
 	WheatherService wheatherService;
-	
+
 	@GetMapping("/")
 	public String index() {
 
@@ -38,16 +36,17 @@ public class WheatherController {
 
 	@GetMapping("/wheather/{location}/days/{days}")
 	public String wheather(@PathVariable String location, @PathVariable Integer days) {
-		
+
 		String json = null;
 		try {
 			List<WheatherLocation> localSearch = wheatherService.find(location);
-			if(localSearch.isEmpty()) throw new NoLocalDataFoundException();
+			if (localSearch.isEmpty())
+				throw new NoLocalDataFoundException();
 			json = localSearch.get(0).getWheatherDataList().get(0).getJsonData();
 			System.out.println("from local storage");
-		/*TODO }catch (LocalDataExpiredException e) {*/
-		}catch (NoLocalDataFoundException e) {
-			
+			// TODO }catch (LocalDataExpiredException e) { 
+		} catch (NoLocalDataFoundException e) {
+
 			json = wheatherApiService.getWheatherData(location, days);
 			ApiResponse obj = new ApiResponse();
 			obj = JsonHandler.jsonToObject(json, obj);
@@ -59,6 +58,5 @@ public class WheatherController {
 		return json;
 
 	}
-	
-	
+
 }

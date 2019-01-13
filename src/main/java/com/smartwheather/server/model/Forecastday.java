@@ -1,18 +1,11 @@
 package com.smartwheather.server.model;
 
+public class Forecastday {
 
-
-
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Forecastday  {
-
-	private String date; /**TODO handle like data type*/
+	private String date;
+	// TODO handle like data type
 	private Day day;
-	
+
 	public Forecastday() {
 		// TODO Auto-generated constructor stub
 	}
@@ -25,11 +18,12 @@ public class Forecastday  {
 		this.date = date;
 	}
 
-	
-	  public Day getDay() { return day; }
-	  
-	  public void setDay(Day day) { this.day = day; }
-	 
-	
+	public Day getDay() {
+		return day;
+	}
+
+	public void setDay(Day day) {
+		this.day = day;
+	}
 
 }

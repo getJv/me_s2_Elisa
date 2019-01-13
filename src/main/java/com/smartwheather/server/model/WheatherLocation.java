@@ -17,10 +17,7 @@ public class WheatherLocation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String tokenLocation; /*
-									 * Created from the latitude and longitude concatenation its a way to group all
-									 * data under the same coordinate
-									 */
+	private String tokenLocation;
 	private String name;
 	private String region;
 	private String country;
@@ -125,7 +122,7 @@ public class WheatherLocation {
 	public void setWheatherDataList(List<WheatherData> wheatherDataList) {
 		this.wheatherDataList = wheatherDataList;
 	}
-	
+
 	public List<WheatherData> getWheatherDataList() {
 		return this.wheatherDataList;
 	}

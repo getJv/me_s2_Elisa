@@ -1,19 +1,16 @@
 package com.smartwheather.server.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Location {
 
-	private String name;	
+	private String name;
 	private String region;
 	private String country;
 	private Float lat;
 	private Float lon;
 	private String localtime;
-	
-	public Location() {}
+
+	public Location() {
+	}
 
 	public Location(String name, String region, String country, Float lat, Float lon, String localtime) {
 		super();
@@ -72,10 +69,5 @@ public class Location {
 	public void setLocaltime(String localtime) {
 		this.localtime = localtime;
 	}
-
-	
-	
-	
-	
 
 }
