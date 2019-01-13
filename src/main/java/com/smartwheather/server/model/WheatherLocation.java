@@ -1,6 +1,8 @@
 package com.smartwheather.server.model;
 
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -24,15 +26,15 @@ public class WheatherLocation {
 	private Float lat;
 	private Float lon;
 	private String localtime;
-
-	private long modifiedDate;
+	
+	private LocalDateTime modifiedDate;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<WheatherData> wheatherDataList = new ArrayList<WheatherData>();
 
 	public WheatherLocation() {
 
-		this.setModifiedDate((new Date()).getTime());
+		
 
 	}
 
@@ -47,8 +49,13 @@ public class WheatherLocation {
 		this.lat = location.getLat();
 		this.lon = location.getLon();
 		this.localtime = location.getLocaltime();
-		this.setModifiedDate((new Date()).getTime());
+		this.setUpdatedOn();
 
+	}
+
+	public void setUpdatedOn() {
+		this.setModifiedDate(LocalDateTime.now());
+		
 	}
 
 	public Long getId() {
@@ -127,11 +134,11 @@ public class WheatherLocation {
 		return this.wheatherDataList;
 	}
 
-	public long getModifiedDate() {
+	public LocalDateTime getModifiedDate() {
 		return modifiedDate;
 	}
 
-	public void setModifiedDate(long modifiedDate) {
+	public void setModifiedDate(LocalDateTime modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
 

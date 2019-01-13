@@ -48,5 +48,11 @@ public class JsonHandlerService {
 
 		return apiResponse;
 	}
+	
+	public String getJsonNodeValue(String json,String index) throws IOException {
+
+		return mapper.readTree(json).get(index).textValue();
+
+	}
 
 }

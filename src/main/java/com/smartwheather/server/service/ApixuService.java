@@ -17,5 +17,17 @@ public class ApixuService {
 		return restTemplate.getForObject(uri, String.class);
 
 	}
+	
+	public String getWheatherData(String queryText) {
+
+		RestTemplate restTemplate = new RestTemplate();
+
+		String uri = this.root_uri + "&q=" + queryText;
+
+		return restTemplate.getForObject(uri, String.class);
+
+	}
+	
+	
 
 }

@@ -1,5 +1,8 @@
 package com.smartwheather.server.controller;
 
+import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +26,7 @@ public class WheatherController {
 	private ApixuService wheatherApiService;
 
 	@Autowired
-	JsonHandlerService JsonHandler;
+	JsonHandlerService jsonHandler;
 
 	@Autowired
 	WheatherService wheatherService;
@@ -34,26 +37,54 @@ public class WheatherController {
 		return "index";
 	}
 
-	@GetMapping("/wheather/{location}/days/{days}")
-	public String wheather(@PathVariable String location, @PathVariable Integer days) {
+	private List<WheatherLocation> getLocalData(String location) throws NoLocalDataFoundException {
+		List<WheatherLocation> localSearch = wheatherService.find(location);
+		if (localSearch.isEmpty())
+			throw new NoLocalDataFoundException();
+		return localSearch;
+	}
+
+	private void storeNewData(String json) {
+
+		ApiResponse obj = new ApiResponse();
+		obj = jsonHandler.jsonToObject(json, obj);
+		WheatherLocation wheatherLocation = new WheatherLocation(obj.getLocation());
+		wheatherLocation.addData(new WheatherData(json));
+		wheatherService.save(wheatherLocation);
+
+	}
+
+	private void isMoreThenOneHourOld(WheatherLocation wl) throws LocalDataExpiredException {
+
+		Long timeLife = Duration.between(wl.getModifiedDate(), LocalDateTime.now()).toMinutes();
+		if (timeLife > 0)
+			throw new LocalDataExpiredException();
+	}
+
+	@GetMapping("/wheather/{location}")
+	public String wheather(@PathVariable String location) {
 
 		String json = null;
+		List<WheatherLocation> localSearch = null;
 		try {
-			List<WheatherLocation> localSearch = wheatherService.find(location);
-			if (localSearch.isEmpty())
-				throw new NoLocalDataFoundException();
-			json = localSearch.get(0).getWheatherDataList().get(0).getJsonData();
-			System.out.println("from local storage");
-			// TODO }catch (LocalDataExpiredException e) { 
+			localSearch = this.getLocalData(location);
+			this.isMoreThenOneHourOld(localSearch.get(0));
+			int mostUpdatedInfo = localSearch.get(0).getWheatherDataList().size() - 1;
+			json = localSearch.get(0).getWheatherDataList().get(mostUpdatedInfo).getJsonData();
+
+		} catch (LocalDataExpiredException e) {
+
+			json = wheatherApiService.getWheatherData(location);
+
+			localSearch.get(0).addData(new WheatherData(json));
+			localSearch.get(0).setUpdatedOn();
+			wheatherService.save(localSearch.get(0));
+
 		} catch (NoLocalDataFoundException e) {
 
-			json = wheatherApiService.getWheatherData(location, days);
-			ApiResponse obj = new ApiResponse();
-			obj = JsonHandler.jsonToObject(json, obj);
-			WheatherLocation wheatherLocation = new WheatherLocation(obj.getLocation());
-			wheatherLocation.addData(new WheatherData(json));
-			wheatherService.save(wheatherLocation);
-			System.out.println("from remote api");
+			json = wheatherApiService.getWheatherData(location);
+
+			this.storeNewData(json);
 		}
 		return json;
 
