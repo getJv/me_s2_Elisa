@@ -10,5 +10,7 @@ public class ServerApplication {
 		SpringApplication.run(ServerApplication.class, args);
 	}
 
+	
+	/*TODO Jhonatan: use the Lombok to simplify the coe */
 }
 

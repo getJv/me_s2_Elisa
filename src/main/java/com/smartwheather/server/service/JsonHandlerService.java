@@ -1,14 +1,15 @@
 package com.smartwheather.server.service;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smartwheather.server.model.ApiResponse;
 
 @Service
 public class JsonHandlerService {
@@ -30,13 +31,22 @@ public class JsonHandlerService {
 		return response;
 	}
 
-	public <T> List<T> parseJsonArray(String json, Class<T> classOnWhichArrayIsDefined)
-			throws IOException, ClassNotFoundException {
-		ObjectMapper mapper = new ObjectMapper();
-		@SuppressWarnings("unchecked")
-		Class<T[]> arrayClass = (Class<T[]>) Class.forName("[L" + classOnWhichArrayIsDefined.getName() + ";");
-		T[] objects = mapper.readValue(json, arrayClass);
-		return Arrays.asList(objects);
+	public ApiResponse jsonToObject(String json, ApiResponse apiResponse) {
+
+		try {
+			apiResponse = mapper.readValue(json, ApiResponse.class);
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return apiResponse;
 	}
 
 }

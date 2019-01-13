@@ -1,9 +1,8 @@
 package com.smartwheather.server.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Date;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,49 +11,53 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
+
 public class WheatherLocation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id; 
-	private String tokenLocation; /* Created from the latitude and longitude concatenation its a way to group all data under the same coordinate */
+	private Long id;
+	private String tokenLocation; /*
+									 * Created from the latitude and longitude concatenation its a way to group all
+									 * data under the same coordinate
+									 */
 	private String name;
 	private String region;
 	private String country;
 	private Float lat;
 	private Float lon;
 	private String localtime;
-	
+
+	private long modifiedDate;
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<WheatherData> wheatherDataList = new ArrayList<WheatherData>();
 
 	public WheatherLocation() {
-		 
+
+		this.setModifiedDate((new Date()).getTime());
+
 	}
-	
-	
-	
-	 public WheatherLocation(Location location) {
-		 
-		 	super();
-			
-			this.setTokenLocation(location.getLat(), location.getLon());
-			this.name = location.getName();
-			this.region = location.getRegion();
-			this.country = location.getCountry();
-			this.lat = location.getLat();
-			this.lon = location.getLon();
-			this.localtime = location.getLocaltime();
-			
-		 
-	 }
-	 
-	 
+
+	public WheatherLocation(Location location) {
+
+		super();
+
+		this.setTokenLocation(location.getLat(), location.getLon());
+		this.name = location.getName();
+		this.region = location.getRegion();
+		this.country = location.getCountry();
+		this.lat = location.getLat();
+		this.lon = location.getLon();
+		this.localtime = location.getLocaltime();
+		this.setModifiedDate((new Date()).getTime());
+
+	}
 
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -107,38 +110,32 @@ public class WheatherLocation {
 		this.localtime = localtime;
 	}
 
-
-
 	public String getTokenLocation() {
 		return tokenLocation;
 	}
 
-
-
 	public void setTokenLocation(Float lat, Float lon) {
-		this.tokenLocation =  Float.toString(lat)+","+Float.toString(lon);
+		this.tokenLocation = Float.toString(lat) + "," + Float.toString(lon);
 	}
-
 
 	public void addData(WheatherData data) {
-		 //https://bit.ly/2rJIkNd
-		 this.wheatherDataList.add(data);
-		 //data.setWheatherLocation(this);
-	 }
-	
-	public List<WheatherData> getWheatherDataList() {
-		//https://bit.ly/2rJIkNd
-		// force the devGuy use the addDataMethod to modify the data.
-		List<WheatherData> securelist = Collections.unmodifiableList(this.wheatherDataList);
-		return securelist;
+		this.wheatherDataList.add(data);
 	}
-
-
 
 	public void setWheatherDataList(List<WheatherData> wheatherDataList) {
 		this.wheatherDataList = wheatherDataList;
 	}
 	
-	
+	public List<WheatherData> getWheatherDataList() {
+		return this.wheatherDataList;
+	}
+
+	public long getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public void setModifiedDate(long modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
 
 }
