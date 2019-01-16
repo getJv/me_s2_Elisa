@@ -1,4 +1,4 @@
-package com.smartwheather.server;
+package com.smartweather.server;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.smartwheather.server.model;
+package com.smartweather.server.model;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import org.hibernate.annotations.Type;
 
 @Entity
-public class WheatherData {
+public class WeatherData {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -20,11 +20,11 @@ public class WheatherData {
 	@Type(type = "text")
 	private String jsonData;
 
-	public WheatherData() {
+	public WeatherData() {
 
 	}
 
-	public WheatherData(String data) {
+	public WeatherData(String data) {
 
 		this.jsonData = data;
 		this.setUpdatedOn();

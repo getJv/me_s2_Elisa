@@ -1,9 +1,7 @@
-package com.smartwheather.server.model;
+package com.smartweather.server.model;
 
 import java.util.ArrayList;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,7 +12,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 
-public class WheatherLocation {
+public class WeatherLocation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,15 +28,15 @@ public class WheatherLocation {
 	private LocalDateTime modifiedDate;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<WheatherData> wheatherDataList = new ArrayList<WheatherData>();
+	private List<WeatherData> weatherDataList = new ArrayList<WeatherData>();
 
-	public WheatherLocation() {
+	public WeatherLocation() {
 
 		
 
 	}
 
-	public WheatherLocation(Location location) {
+	public WeatherLocation(Location location) {
 
 		super();
 
@@ -122,16 +120,16 @@ public class WheatherLocation {
 		this.tokenLocation = Float.toString(lat) + "," + Float.toString(lon);
 	}
 
-	public void addData(WheatherData data) {
-		this.wheatherDataList.add(data);
+	public void addData(WeatherData data) {
+		this.weatherDataList.add(data);
 	}
 
-	public void setWheatherDataList(List<WheatherData> wheatherDataList) {
-		this.wheatherDataList = wheatherDataList;
+	public void setWeatherDataList(List<WeatherData> weatherDataList) {
+		this.weatherDataList = weatherDataList;
 	}
 
-	public List<WheatherData> getWheatherDataList() {
-		return this.wheatherDataList;
+	public List<WeatherData> getWeatherDataList() {
+		return this.weatherDataList;
 	}
 
 	public LocalDateTime getModifiedDate() {

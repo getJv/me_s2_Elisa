@@ -1,4 +1,4 @@
-package com.smartwheather.server.exceptions;
+package com.smartweather.server.exceptions;
 
 public class LocalDataExpiredException extends Exception {
 

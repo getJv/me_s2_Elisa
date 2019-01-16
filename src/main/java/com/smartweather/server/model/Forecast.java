@@ -1,4 +1,4 @@
-package com.smartwheather.server.model;
+package com.smartweather.server.model;
 
 import java.util.List;
 

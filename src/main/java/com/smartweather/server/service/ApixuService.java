@@ -1,4 +1,4 @@
-package com.smartwheather.server.service;
+package com.smartweather.server.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -8,7 +8,7 @@ public class ApixuService {
 
 	private final String root_uri = "http://api.apixu.com/v1/forecast.json?key=56f115b2469844ebad0232253190901";
 
-	public String getWheatherData(String queryText, Integer numberOfDays) {
+	public String getWeatherData(String queryText, Integer numberOfDays) {
 
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -18,7 +18,7 @@ public class ApixuService {
 
 	}
 	
-	public String getWheatherData(String queryText) {
+	public String getWeatherData(String queryText) {
 
 		RestTemplate restTemplate = new RestTemplate();
 
