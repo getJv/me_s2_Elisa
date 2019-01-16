@@ -11,6 +11,6 @@ public class ServerApplication {
 	}
 
 	
-	/*TODO Jhonatan: use the Lombok to simplify the coe */
+
 }
 
