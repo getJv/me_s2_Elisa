@@ -1,17 +1,13 @@
 package com.smartweather.server.repository;
 
-import java.util.List;
-
-
+import com.smartweather.server.model.WeatherLocation;
 import org.springframework.data.repository.CrudRepository;
 
-
-import com.smartweather.server.model.WeatherLocation;
+import java.util.List;
 
 public interface WeatherRepository extends CrudRepository<WeatherLocation, String> {
 
-	public List<WeatherLocation> findByNameContainingIgnoreCaseOrderByModifiedDateDesc(String locationName);
-	 
-	
+    List<WeatherLocation> findByNameContainingIgnoreCaseOrderByModifiedDateDesc(String locationName);
+
 
 }

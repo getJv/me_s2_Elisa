@@ -1,62 +1,46 @@
 package com.smartweather.server.model;
 
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
-import org.hibernate.annotations.Type;
-
+@Setter
+@Getter
 @Entity
 public class WeatherData {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
-	private LocalDateTime modifiedDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@Type(type = "text")
-	private String jsonData;
+    private LocalDateTime modifiedDate;
 
-	public WeatherData() {
+    @Type(type = "text")
+    private String jsonData;
 
-	}
+    public WeatherData() {
 
-	public WeatherData(String data) {
+    }
 
-		this.jsonData = data;
-		this.setUpdatedOn();
-	}
-	
-	public void setUpdatedOn() {
-		this.setModifiedDate(LocalDateTime.now());
-		
-	}
+    public WeatherData(String data) {
 
-	public Long getId() {
-		return id;
-	}
+        this.jsonData = data;
+        this.setUpdatedOn();
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setUpdatedOn() {
+        this.setModifiedDate(LocalDateTime.now());
 
-	public String getJsonData() {
-		return jsonData;
-	}
+    }
 
-	public void setJsonData(String jsonData) {
-		this.jsonData = jsonData;
-	}
 
-	public LocalDateTime getModifiedDate() {
-		return modifiedDate;
-	}
-
-	public void setModifiedDate(LocalDateTime modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
+    public void setModifiedDate(LocalDateTime modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
 
 }
