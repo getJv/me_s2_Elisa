@@ -6,28 +6,27 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ApixuService {
 
-	private final String root_uri = "http://api.apixu.com/v1/forecast.json?key=56f115b2469844ebad0232253190901";
+    private final String root_uri = "http://api.apixu.com/v1/forecast.json?key=56f115b2469844ebad0232253190901";
 
-	public String getWeatherData(String queryText, Integer numberOfDays) {
+    public String getWeatherData(String queryText, Integer numberOfDays) {
 
-		RestTemplate restTemplate = new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
 
-		String uri = this.root_uri + "&q=" + queryText + "&days=" + numberOfDays;
+        String uri = this.root_uri + "&q=" + queryText + "&days=" + numberOfDays;
 
-		return restTemplate.getForObject(uri, String.class);
+        return restTemplate.getForObject(uri, String.class);
 
-	}
-	
-	public String getWeatherData(String queryText) {
+    }
 
-		RestTemplate restTemplate = new RestTemplate();
+    public String getWeatherData(String queryText) {
 
-		String uri = this.root_uri + "&q=" + queryText;
+        RestTemplate restTemplate = new RestTemplate();
 
-		return restTemplate.getForObject(uri, String.class);
+        String uri = this.root_uri + "&q=" + queryText;
 
-	}
-	
-	
+        return restTemplate.getForObject(uri, String.class);
+
+    }
+
 
 }

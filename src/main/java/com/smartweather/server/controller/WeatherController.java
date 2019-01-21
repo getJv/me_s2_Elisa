@@ -36,7 +36,9 @@ public class WeatherController {
     }
 
     private List<WeatherLocation> getLocalData(String location) throws NoLocalDataFoundException {
+
         List<WeatherLocation> localSearch = weatherService.find(location);
+
         if (localSearch.isEmpty())
             throw new NoLocalDataFoundException();
         return localSearch;
@@ -80,9 +82,14 @@ public class WeatherController {
 
         } catch (NoLocalDataFoundException e) {
 
-            json = weatherApiService.getWeatherData(location);
+            try { // TODO: build a componnet handler: https://www.baeldung.com/spring-rest-template-error-handling
+                json = weatherApiService.getWeatherData(location);
+                this.storeNewData(json);
+            } catch (Exception ee) {
+                json = "{\"error\":{\"code\":1006,\"message\":\"No matching location found.\"}}";
 
-            this.storeNewData(json);
+            }
+
         }
         return json;
 
