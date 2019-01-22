@@ -86,7 +86,8 @@ public class WeatherController {
                 json = weatherApiService.getWeatherData(location);
                 this.storeNewData(json);
             } catch (Exception ee) {
-                json = "{\"error\":{\"code\":1006,\"message\":\"No matching location found.\"}}";
+                //json = "{\"error\":{\"code\":1006,\"message\":\"No matching location found.\"}}";
+               // return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
 
             }
 
