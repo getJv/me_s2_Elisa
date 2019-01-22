@@ -82,13 +82,10 @@ public class WeatherController {
 
         } catch (NoLocalDataFoundException e) {
 
-            try { // TODO: build a componnet handler: https://www.baeldung.com/spring-rest-template-error-handling
-                json = weatherApiService.getWeatherData(location);
-                this.storeNewData(json);
-            } catch (Exception ee) {
-                json = "{\"error\":{\"code\":1006,\"message\":\"No matching location found.\"}}";
 
-            }
+            json = weatherApiService.getWeatherData(location);
+            this.storeNewData(json);
+
 
         }
         return json;
