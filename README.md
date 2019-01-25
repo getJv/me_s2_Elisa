@@ -10,7 +10,7 @@ Spring boot, H2 DB, Rest
 
 ## How to test it?
 
-Use these follow commands:
+Use these commands:
 
 * `git clone https://github.com/getJv/smartweather_server.git`
 * go to you downloaded folder: `cd smartweather_server`
