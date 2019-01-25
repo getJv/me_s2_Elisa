@@ -1,0 +1,17 @@
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\model\WeatherData.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\exceptions\LocalDataExpiredException.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\exceptions\NoLocalDataFoundException.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\service\JsonHandlerService.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\service\WeatherService.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\model\Location.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\model\WeatherLocation.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\model\Current.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\model\Day.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\model\Forecast.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\model\Forecastday.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\model\Condition.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\model\ApiResponse.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\service\ApixuService.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\repository\WeatherRepository.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\controller\WeatherController.java
+C:\workspace-intelij\me_s2_Elisa\src\main\java\com\smartweather\server\ServerApplication.java
