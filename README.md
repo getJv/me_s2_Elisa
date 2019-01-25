@@ -19,4 +19,4 @@ Use these commands:
 * use this url to get the json weather data: `http://localhost:8080/weather/tallin`
 
 !["sample"](https://media.giphy.com/media/9G6RAnTDCyKreGyULY/giphy.gif)
-Large: https://gph.is/2CJt2gL
+Large: https://gfycat.com/YoungSeparateJerboa
