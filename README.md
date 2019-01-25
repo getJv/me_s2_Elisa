@@ -18,4 +18,4 @@ Use these follow commands:
 * The server will start (see the gif sample bellow)
 * use this url to get the json weather data: `http://localhost:8080/weather/tallin`
 
-![Alt Text](https://gfycat.com/YoungSeparateJerboa)
+!["sample"](https://media.giphy.com/media/9G6RAnTDCyKreGyULY/giphy.gif)
